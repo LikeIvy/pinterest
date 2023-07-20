@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list import MultipleObjectMixin
 
-from subscripeapp.models import Subscription
+from subscribeapp.models import Subscription
 
 
 # Create your views here.
