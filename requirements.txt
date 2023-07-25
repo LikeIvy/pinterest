@@ -5,8 +5,10 @@ Django==4.2.2
 django-bootstrap4==23.2
 django-environ==0.10.0
 exceptiongroup==1.1.1
+gunicorn==21.2.0
 h11==0.14.0
 outcome==1.2.0
+packaging==23.1
 Pillow==10.0.0
 selenium==4.10.0
 soupsieve==2.4.1
