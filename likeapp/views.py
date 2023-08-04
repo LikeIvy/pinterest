@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views.generic import RedirectView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib import messages
 
 from articleapp.models import Article
 from likeapp.models import LikeRecord
@@ -21,11 +22,13 @@ class LikeArticleView(RedirectView):
         article = get_object_or_404(Article, pk=kwargs['pk'])
 
         if LikeRecord.objects.filter(user=user, article=article).exists():
+            messages.add_message(self.request, messages.ERROR, '이미 좋아요를 누르셨습니다.')
             return HttpResponseRedirect(reverse('articleapp:detail', kwargs={'pk':kwargs['pk']}))
         else:
             LikeRecord(user=user, article=article).save()
         article.like += 1
         article.save()    
         
+        messages.add_message(self.request, messages.SUCCESS, '좋아요가 반영되었습니다.')
         return super(LikeArticleView, self).get(self.request, *args, **kwargs)
     
